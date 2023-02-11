@@ -11,7 +11,9 @@ To run:
 The project should now be visible here: http://localhost:3000/
 
 To log in use:
+
 email: test@gmail.com
+
 password: 123
 
 When the local server is running we can send requests to the API, for example using the Postman application, the server works with GET, POST, PUT and DEL requests.
@@ -58,6 +60,9 @@ Ordered products:
 
 
 We can look at the results of our requests through the rendered view at http://localhost:3000/ or by logging into http://localhost:8183/index.php?route=/sql&pos=0&db=myDatabase&table=Orders using:
+
 Server: mysql
+
 Username: root
+
 Password: root
