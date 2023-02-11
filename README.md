@@ -16,6 +16,7 @@ email: test@gmail.com
 
 password: 123
 
+
 When the local server is running we can send requests to the API, for example using the Postman application, the server works with GET, POST, PUT and DEL requests.
 
 The addresses to send requests to:
