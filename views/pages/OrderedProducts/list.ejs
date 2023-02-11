@@ -1,0 +1,44 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>All ordered products</h2>
+    <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
+        <thead>
+            <tr>
+                <th>IDorderedProduct</th>
+                <th>Quantity</th>
+                <th>Product</th>
+                <th>IDorder</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (let ordered of orderds) { %>
+            <tr>
+                <td data-label="IDorderedProduct"><%= ordered.IDorderedProduct %></td>
+                <td data-label="Quantity"><%= ordered.quantity %></td>
+                <td data-label="Product"><%= ordered.productModel.name %></td>
+                <td data-label="IDorder"><%= ordered.Order_IDorder + " - " + ordered.order.clientContactInfo %></td>
+                <td>
+                    <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
+                        <li>
+                            <a href="/OrderedProducts/details/<%= ordered.IDorderedProduct %>" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="/OrderedProducts/edit/<%= ordered.IDorderedProduct %>" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="/OrderedProducts/delete/<%= ordered.IDorderedProduct %>" class="list-actions-button-delete" onclick="alert('Deleted successfully')">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <div>
+        <p><a href="/OrderedProducts/add" class="button-add">Add a product to an order</a></p>
+        <p class="delete-message"></p>
+    </div>
+    
+</main>
+<%- include('../../fragments/footer.ejs') %>

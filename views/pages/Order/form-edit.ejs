@@ -1,0 +1,34 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Edit product</h2>
+
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <label for="IDorder">IDorder: </label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorder" class="errors-text"></span>
+
+        <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
+        <input type="text" name="clientContactInfo" id="clientContactInfo" value="BMIgeneral@bmi.com" required>
+        <span id="errorClientContactInfo" class="errors-text"></span>
+
+        <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="shippingCompany" id="shippingCompany" required>
+            <option>DHL</option>
+            <option value="1"> DHL</option>
+            <option value="2"> Inpost</option>
+            <option value="3"> Poczta Polska</option>
+        </select>
+        <span id="errorShippingCompany" class="errors-text"></span>
+
+        <label for="premiumDelivery">Premium delivery: </label>  <!-- premiumDelivery is nullable therefore no "required" keyword-->
+        <input type="checkbox" name="premiumDelivery" id="premiumDelivery" checked>
+        <span id="errorPremiumDelivery"></span>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href="/Order/" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+</main>
+<%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,47 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Ordered product details</h2>
+
+    <form class="form">
+        <label for="IDorderedProduct">IDorderedProduct: </label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorderedProduct" class="errors-text"></span>
+
+        <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
+        <input type="number" name="quantity" id="quantity" value="1" disabled>
+        <span id="errorQuantity" class="errors-text"></span>
+
+        <label for="IDproduct">Product: <span class="symbol-required">*</span></label>
+        <input type="text" name="IDproduct" id="IDproduct" value="Axceletron DB120" disabled>
+        <span id="errorIDproduct" class="errors-text"></span>
+
+        <div class="form-buttons"> 
+            <a href="/OrderedProducts/edit/1" class="form-button-edit">Edit</a>
+        </div>
+    </form>
+
+    <h2>Related order details</h2>
+    <table class="table-list"> <!-- Table with first table's fields-->
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date of placing order</th>
+                <th>Contact info</th>
+                <th>Shipping company</th>
+                <th>Premium delivery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Order ID">1</td>
+                <td data-label="Date of placing order">12-10-2022</td>
+                <td data-label="Contact info">BMIgeneral@bmi.com</td>
+                <td data-label="Shipping company">DHL</td>
+                <td data-label="Premium delivery">yes</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/OrderedProducts/" class="form-button-back">Back</a>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> BMI general view</title>
+    <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <% if(navLocation === 'productModel') { %>
+        <script type="application/javascript" src="../../js/validationProductModelForm.js"></script>
+    <% } %>
+    <% if(navLocation === 'order') { %>
+        <script type="application/javascript" src="../../js/validationOrderForm.js"></script>
+    <% } %>
+    <% if(navLocation === 'orderedProducts') { %>
+        <script type="application/javascript" src="../../js/validationOrderedProductsForm.js"></script>
+    <% } %>
+</head>
+<body>
+
+<header>
+    <h1> BMI</h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <h3>Log in:</h3>
+            <form method="post" action="/login" novalidate>
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email">
+
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="password">
+
+                <input type="submit" class="form-button-edit" value="Log in">
+                <span id="loginErrors"><%= loginError ? loginError : "" %></span>
+            </form>
+        </div>
+    <% } else { %>
+    <div class="form-buttons" >
+        <span> You are logged in as: <%= loggedUser.firstName + " " + loggedUser.lastName %></span>
+        <a href="/logout" class="form-button-cancel">Log out</a>
+    </div>
+    <% } %>
+</header>
+<nav>
+    <ul>
+        <% if(loggedUser) { %>
+        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>"><%= __("nav.main-page") %></a></li> <!-- class "active" marks which tab we are currently on-->
+        <li><a href="/ProductModel" class="<%= navLocation === 'productModel' ? 'active' : ''%>"><%= __("nav.productModel") %></a></li>
+        <li><a href="/Order" class="<%= navLocation === 'order' ? 'active' : ''%>"><%= __("nav.order") %></a></li>
+        <li><a href="/OrderedProducts" class="<%= navLocation === 'orderedProducts' ? 'active' : ''%>"><%= __("nav.orderedProducts") %></a></li>
+        <% } %>
+    </ul>
+    <ul>
+        <li><a href="/changeLang/pl" class="<%= lang === "pl" ? "active" : "" %>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang === "en" ? "active" : "" %>">EN</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,52 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>All orders</h2>
+    <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date of placing order</th>
+                <th>Contact info</th>
+                <th>Shipping company</th>
+                <th>Premium delivery</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (let order of orders) { %>
+            <tr>
+                <td data-label="Order ID"><%= order.IDorder %></td>
+
+                <% if(!order.datePlaced) { %>
+                <td data-label="Date of placing order"><%= order.datePlaced %> </td>
+                <% } else { %>
+                <td data-label="Date of placing order"><%= order.datePlaced.toISOString().split("T") [0] %> </td>
+                <% } %>
+
+                <td data-label="Contact info"><%= order.clientContactInfo %></td>
+                <td data-label="Shipping company"><%= order.shippingCompany %></td>
+                <td data-label="Premium delivery"><%= order.premiumDelivery %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/Order/details/<%= order.IDorder %>" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="/Order/edit/<%= order.IDorder %>" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="/Order/delete/<%= order.IDorder %>" class="list-actions-button-delete" onclick="alert('Deleted successfully')">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <div>
+        <p><a href="/Order/add" class="button-add">Add new order</a></p>
+        <p class="delete-message"></p>
+    </div>
+    
+</main>
+<%- include('../../fragments/footer.ejs') %>

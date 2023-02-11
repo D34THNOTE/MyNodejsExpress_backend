@@ -1,0 +1,48 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%= __("product.list.title") %></h2>
+    <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
+        <thead>
+            <tr>
+                <th><%= __("product.fields.IDproduct") %></th>
+                <th><%= __("product.fields.name") %></th>
+                <th><%= __("product.fields.price") %></th>
+                <th><%= __("product.fields.productionDate") %></th>
+                <th><%= __("product.fields.endDistributionDate") %></th>
+                <th><%= __("list.actions.title") %></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (let product of products) { %>
+            <tr>
+                <td data-label="<%= __("product.fields.IDproduct") %>"><%= product.IDproduct %></td>
+                <td data-label="<%= __("product.fields.name") %>"><%= product.name %></td>
+                <td data-label="<%= __("product.fields.price") %>"><%= product.price %></td>
+                <td data-label="<%= __("product.fields.productionDate") %>"><%= fmt.formatDate(product.productionDate) %></td> <!-- formatting js Date format -->
+                <td data-label="<%= __("product.fields.endDistributionDate") %>"><%= fmt.formatDate(product.endDistributionDate) %></td>
+
+                <td>
+                    <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
+                        <li>
+                            <a href="/ProductModel/details/<%= product.IDproduct%>" class="list-actions-button-details"><%= __("list.actions.details") %></a>
+                        </li>
+                        <li>
+                            <a href="/ProductModel/edit/<%= product.IDproduct%>" class="list-actions-button-edit"><%= __("list.actions.edit") %></a>
+                        </li>
+                        <li>
+                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete" onclick="alert('<%= __("product.form.delete.confirm.text") %>')"><%= __("list.actions.delete") %></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <div>
+        <p><a href="/ProductModel/add" class="button-add"><%= __("product.list.addNew") %></a></p>
+        <p class="delete-message"></p>
+    </div>
+    
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
